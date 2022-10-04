@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import static com.cydeo.spring05thymeleaf.service.impl.CartServiceImpl.CART;
+
 @Controller
 
 public class cartController {
@@ -28,8 +30,12 @@ public class cartController {
 
     @GetMapping("/addToCart/{id}/{quantity}")
     public String addCart(@PathVariable ("id") UUID id,@PathVariable("quantity") Integer quantity,Model model){
-
+      //Cart cart=cartService.addToCart(id,quantity);
       model.addAttribute("cart",cartService.addToCart(id,quantity));
+
+     // model.addAttribute("cart",cart);
+        model.addAttribute("cartList",CART.getCartItemList());
+        model.addAttribute("total",CART.getCartTotalAmount());
 
 
        return "/cart/show-cart";
@@ -45,9 +51,12 @@ public class cartController {
         return "/cart/show-cart";
     }
     @GetMapping("/delete/{id}")
-    public String deleteCartItem(@PathVariable("id") UUID id,@ModelAttribute("cart") Cart cart){
-        cartService.deleteFromCart(id);
-        return "/cart/show-cart";
+    public String deleteCartItem(@PathVariable("id") UUID id, @ModelAttribute ("cart")Cart cart, Model model){
+      cartService.deleteFromCart(id);
+        model.addAttribute("cartList",cart.getCartItemList());
+        model.addAttribute("total",cart.getCartTotalAmount());
+
+        return "redirect:/cart";
     }
 
 }

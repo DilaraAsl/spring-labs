@@ -38,7 +38,8 @@ public class CartServiceImpl implements CartService {
       //set the cart item list!!!!!!!!
 
 
-     CART.getCartItemList().add(cartItem);
+    CART.getCartItemList().add(cartItem);
+
       CART.setCartTotalAmount(CART.getCartTotalAmount().add(productPrice));
         return CART;
     }
