@@ -30,10 +30,8 @@ public class cartController {
 
     @GetMapping("/addToCart/{id}/{quantity}")
     public String addCart(@PathVariable ("id") UUID id,@PathVariable("quantity") Integer quantity,Model model){
-      //Cart cart=cartService.addToCart(id,quantity);
-      model.addAttribute("cart",cartService.addToCart(id,quantity));
 
-     // model.addAttribute("cart",cart);
+        model.addAttribute("cart",cartService.addToCart(id,quantity));
         model.addAttribute("cartList",CART.getCartItemList());
         model.addAttribute("total",CART.getCartTotalAmount());
 
@@ -42,19 +40,18 @@ public class cartController {
     }
 
     @GetMapping("/cart")
-    public String showCart(@ModelAttribute("cart") Cart cart, Model model){
+    public String showCart( Model model){
 
-      model.addAttribute("cartList",cart.getCartItemList());
+      model.addAttribute("cartList",CART.getCartItemList());
+      model.addAttribute("total",CART.getCartTotalAmount());
 
-      model.addAttribute("total",cart.getCartTotalAmount());
+      return "/cart/show-cart";
 
-        return "/cart/show-cart";
     }
     @GetMapping("/delete/{id}")
-    public String deleteCartItem(@PathVariable("id") UUID id, @ModelAttribute ("cart")Cart cart, Model model){
+    public String deleteCartItem(@PathVariable("id") UUID id, Model model){
       cartService.deleteFromCart(id);
-        model.addAttribute("cartList",cart.getCartItemList());
-        model.addAttribute("total",cart.getCartTotalAmount());
+
 
         return "redirect:/cart";
     }
