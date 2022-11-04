@@ -80,11 +80,10 @@
 /.mvn/
 mvnw.cmd
 mvnw
-/lab-04-springmvc/lab-04-springmvc.iml
+
+/*/*.iml
 
 # Project exclude paths
-/lab-00-coupling/target/
-/lab-01-ioc/target/
-/lab-02-di/target/
-/lab-04-springmvc/target/
-/spring-05-thymeleaf/target/
+/*/target/
+/*/.mvn/
+
