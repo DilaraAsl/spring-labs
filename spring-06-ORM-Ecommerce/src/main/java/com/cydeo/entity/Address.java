@@ -11,10 +11,10 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Address{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+public class Address extends BaseEntity{
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private String id;
 
     private String name;
     private String street;
