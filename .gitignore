@@ -87,3 +87,5 @@ mvnw
 /*/target/
 /*/.mvn/
 
+/spring-08-rest/src/main/resources/application.properties
+/lab-08-rest/src/main/resources/application.properties
